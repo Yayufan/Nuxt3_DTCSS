@@ -11,8 +11,8 @@ import Title from './Title.vue';
 </script>
 <style lang="scss" scoped>
 .footer-section {
-    // background-color: #F0F0F0;
-    background: url('../../assets/img/ticbcs_footer.jpg') no-repeat top center;
+    background-color:#D27DA6;
+    // background: url('../../assets/img/ticbcs_footer.jpg') no-repeat top center;
     background-size: cover;
     padding: 2rem 0;
 
@@ -20,7 +20,7 @@ import Title from './Title.vue';
         display: flex;
         flex-direction: column;
         width: 70%;
-        color: black;
+        color: white;
         margin: 0 auto;
         font-size: 1.1rem;
         font-weight: bold;

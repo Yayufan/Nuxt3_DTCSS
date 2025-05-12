@@ -18,8 +18,9 @@
         position: relative;
 
         .title {
-            font-size: 2.7rem;
-            font-weight: 600;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #424384;        
         }
 
     }

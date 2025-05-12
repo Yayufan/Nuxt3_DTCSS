@@ -11,29 +11,6 @@
 
 const router = useRouter();
 
-const title = ref('');
-watch(() => router.currentRoute.value.path, (value) => {
-    switch (value) {
-        case '/seminar-registration':
-            title.value = '研討會報名';
-            break;
-        case '/credit-application':
-            title.value = '學分申請';
-            break;
-        case '/sponsor-list':
-            title.value = '贊助廠商';
-            break;
-        case '/mascot':
-            title.value = '吉祥物專區';
-            break;
-        case '/gallery':
-            title.value = 'Gallery (2023 TICBCS)';
-            break;
-        default:
-            title.value = '';
-            break;
-    }
-});
 
 const isActive = ref(false);
 const props = defineProps<{
@@ -68,7 +45,7 @@ onMounted(() => {
     justify-content: center;
     align-items: center;
     // background: url('../../assets/img/ticbcsBanner_new (1).jpg') no-repeat center center;
-    background: url('../../assets/img/ticbcsBanner_new.jpg') no-repeat bottom center;
+    // background: url('../../assets/img/ticbcsBanner_new.jpg') no-repeat bottom center;
     background-size: cover;
     min-height: 38rem;
     width: 100%;
