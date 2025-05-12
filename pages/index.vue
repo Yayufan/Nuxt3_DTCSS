@@ -1,64 +1,76 @@
 <template>
     <main class="common-section">
-        <Breadcrumbs :first-route="'Home'"  :secound-route="''"/>
-        <Title :title="'Coming soon'" />
-        <!-- <el-carousel class="carousel-section" arrow="always" trigger="click">
-            <img class="home-banner-bak" src="@/assets/img/home_banner@2x.png" alt="">
-            <el-carousel-item>
-                <img src="@/assets/img/home_photo1@2x.png" alt="">
-            </el-carousel-item>
-            <el-carousel-item>
-                <img src="@/assets/img/home_photo2@2x.png" alt="">
-            </el-carousel-item>
-            <el-carousel-item>
-                <img src="@/assets/img/home_photo3@2x.png" alt="">
-            </el-carousel-item>
-            <el-carousel-item>
-                <img src="@/assets/img/home_photo4@2x.png" alt="">
-            </el-carousel-item>
-        </el-carousel>
+        <Banner></Banner>
 
-        <div class="countdown-timer-section">
-            <div class="countdown-timer" v-html="countdown"></div>
+        <div class="main-section">
+            <div class="content">
+                <div class="content-image-box">
+                    <img src="../assets/img/bubble_tea_hello.png" alt="">
+                </div>
+                <div class="content-message-box">
+                    <p><B>Research and Real-World Issue of Breast Cancer</B></p>
+                    <p>立足台中、接軌國際、培育英才、任重道遠</p>
+                    <p>在乳癌診治持續邁向個人化與整合照護的今日，我們誠摯地邀清您蒞臨本次年會，與國內外專家共探乳癌診療的新趨勢</p>
+                    <p>本年會將涵蓋從基因檢測、輔助治療、到臨床決策支援與病人全人照護的最新實證，盼您共襄盛舉，攜手推動更完善的乳癌照護路徑。</p>
+                </div>
+            </div>
+
+            <div class="carousel-section">
+                <el-button class="left-btn" @click="prev"><el-icon>
+                        <ElIconArrowLeftBold />
+                    </el-icon></el-button>
+                <div class="carousel-box">
+                    <el-carousel ref="carousel" :interval="4000" type="card" arrow="never">
+                        <el-carousel-item>
+                            <img src="../assets/img/carousel/img0.jpg" alt="">
+                        </el-carousel-item>
+                        <el-carousel-item>
+                            <img src="../assets/img/carousel/img1.jpg" alt="">
+                        </el-carousel-item>
+                        <el-carousel-item>
+                            <img src="../assets/img/carousel/img2.jpg" alt="">
+                        </el-carousel-item>
+                        <el-carousel-item>
+                            <img src="../assets/img/carousel/img3.jpg" alt="">
+                        </el-carousel-item>
+                        <el-carousel-item>
+                            <img src="../assets/img/carousel/img4.jpg" alt="">
+                        </el-carousel-item>
+                        <el-carousel-item>
+                            <img src="../assets/img/carousel/img5.jpg" alt="">
+                        </el-carousel-item>
+                        <el-carousel-item>
+                            <img src="../assets/img/carousel/img6.jpg" alt="">
+                        </el-carousel-item>
+                    </el-carousel>
+                </div>
+                <el-button class="right-btn" @click="next"><el-icon>
+                        <ElIconArrowRightBold />
+                    </el-icon></el-button>
+            </div>
         </div>
-        <div class="video-banner">
-            <img src="@/assets/img/video_banner.png" alt="">
-        </div>
-        <div class="video">
-            <video src="@/assets/movie/promotionalVideo.mp4" controls></video>
-        </div> -->
+
     </main>
 </template>
 <script lang="ts" setup>
+import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import Title from '~/components/layout/Title.vue';
 
+const carousel = ref();
 
-const countdown = ref('');
-
-const calculateCountdown = () => {
-    const targetDate = new Date('2025/11/15');
-    const currentDate = new Date();
-    const timeDifference = targetDate.getTime() - currentDate.getTime();
-
-    if (timeDifference > 0) {
-        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-        countdown.value = `<div class="countdown-div"> <span class="countdown-time">${days}</span> <span class="countdown-word">Days</span></div>
-                            <div class="countdown-div"><span class="countdown-time">${hours}</span>  <span class="countdown-word">Hours</span> </div>
-                            <div class="countdown-div"><span class="countdown-time">${minutes}</span>  <span class="countdown-word">Minutes</span></div>
-                            <div class="countdown-div"> <span class="countdown-time">${seconds}</span>  <span class="countdown-word">Seconds</span></div>`;
-    } else {
-        countdown.value = 'Countdown expired';
-    }
+const prev = () => {
+    carousel.value.prev();
+};
+const next = () => {
+    carousel.value.next();
 };
 
+
+
+
 onMounted(() => {
-    calculateCountdown();
-    setInterval(calculateCountdown, 1000);
+    console.log(carousel.value);
 });
 
 </script>
@@ -66,172 +78,142 @@ onMounted(() => {
 .common-section {
     font-family: $common-section-font-family;
     min-height: 60vw;
-    
-    .el-carousel {
-        // margin-top: 2rem;
-        height: 27vw;
-        max-width: 100%;
-        width: 100;
-        margin: 1vw auto 0 auto;
 
-        @media screen and (max-width: 850px) {
-            margin: 6rem auto 0 auto;
+    .main-section {
+        width: 60%;
+        margin-inline: auto;
 
+        @media screen and (max-width: 1024px) {
+            width: 80%;
+        }
+    }
+
+    .content {
+      
+        display: flex;
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
         }
 
-        .home-banner-bak {
-            z-index: 10;
-            position: absolute;
-            top: 0;
-            width: 100%;
+        .content-image-box {
+            flex: 1;
 
             img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: top center;
+                width: 80%;
 
-            }
-        }
-
-
-
-        .el-carousel__item {
-            width: 100%;
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: content;
-            //     object-position: top center;
-
-        }
-
-        :deep(.el-carousel__container) {
-            height: 100%;
-            width: 100%;
-        }
-
-        :deep(.el-carousel__arrow) {
-            z-index: 20;
-            height: 100%;
-            border-radius: 0;
-            padding: 0;
-            margin: 0;
-            opacity: 0.3;
-            font-size: inherit;
-            text-rendering: auto;
-
-            i {
-                width: 2rem;
-                height: 2rem;
-
-                svg {
-                    width: 3rem;
-                    height: 3rem;
-                }
-            }
-
-            &:hover {
-                opacity: 1;
-            }
-        }
-
-        :deep(.el-carousel__arrow--left) {
-            left: 0;
-        }
-
-        :deep(.el-carousel__arrow--right) {
-            right: 0;
-        }
-
-        :deep(.el-icon),
-        :deep(.el-icon svg) {
-            width: 2rem;
-            height: 2rem;
-        }
-
-        :deep(.el-carousel__button) {
-            width: 0.5rem;
-            height: 0.5rem;
-            border-radius: 50%;
-            color: white;
-            opacity: 1;
-            z-index: 30;
-
-            &:hover {
-                transform: scale(1.65);
-                transition: .65s;
-            }
-        }
-
-        :deep(.el-carousel__indicators) {
-            z-index: 30;
-
-            .is-active {
-                .el-carousel__button {
-                    transform: scale(0.65);
-                    transition: .65s;
+                @media screen and (max-width: 1024px) {
+                    width: 100%;
                 }
             }
         }
-    }
 
-    .countdown-timer-section {
-        height: 10rem;
-        width: 100%;
-        background-image: url('/img/bg01.webp');
-        display: flex;
-        align-items: center;
-
-        .countdown-timer {
-            width: $common-section-width;
-            margin: $common-section-margin;
+        .content-message-box {
+            flex: 1;
+            font-size: 1.5rem;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 3rem;
+            color: #424384;
 
-            :deep(.countdown-div) {
-                flex: 1;
-                text-align: center;
-                font-size: 2rem;
+            // @media screen and (max-width: 1920px) {
+            //     font-size: 1.2rem;
+            //     gap: 3rem;
+                
+            // }
 
-                @media screen and (max-width: 920px) {
-                    display: flex;
-                    flex-direction: column;
-                    font-size: 1.5rem;
-                }
-
-                @media screen and (max-width: 600px) {
-                    font-size: 1.2rem;
-                }
+            @media screen and (max-width: 1920px) {
+                font-size: 1.5rem;
             }
 
-            :deep(.countdown-time) {
-                font-size: 2.5rem;
-                font-weight: bold;
+            @media screen and (max-width: 1440px) {
+                font-size: 1rem;
+                gap: 2rem;
+            }
+
+
+            @media screen and (max-width: 768px) {
+                font-size: 1.5rem;
+                gap: 1rem;
+                
             }
         }
 
-
-
     }
 
-    .video-banner {
-        width: $common-section-width;
-        margin: 5vw auto 0 auto;
+    .news-section {
+        min-height: 15rem;
+        background-color: #D9D5E4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        color: #424384;
+    }
+
+    .carousel-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin: 5rem;
+
+
+        .left-btn {
+            position: absolute;
+            top: 45%;
+            left: 10%;
+        }
+
+        .right-btn {
+            position: absolute;
+            top: 45%;
+            right: 10%;
+        }
+
+        .el-button {
+            // border: #424384 1px solid;
+            box-shadow: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #D27DA6;
+
+            &:hover {
+                transform: scale(1.2);
+                transition: all 0.3s ease-in-out;
+            }
+
+            @media screen and (max-width: 768px) {
+                display: none;
+            }
+        }
+    }
+
+    .carousel-box {
+        width: 100%;
+        // height: 20rem;
+        margin-inline: auto;
+
+        @media screen and (max-width: 768px) {
+            width: 100%;
+
+        }
+
+
 
         img {
             width: 100%;
-        }
-    }
+            height: 100%;
+            object-fit: cover;
 
-    .video {
-        width: $common-section-width;
-        margin: $common-section-margin;
+            @media screen and (max-width: 768px) {
+                width: 100%;
+                height: 13rem;
 
-        video {
-            width: 100%;
+            }
         }
+
     }
 }
 </style>

@@ -2,50 +2,47 @@
     <div>
         <main class="common-section">
             <Banner />
+           <div class="main-section">
+            <div class="credit-box">
+                <div class="credit-point-box">
+                    <ul>
+                        <h1 class="title">研討會申請之會議學分</h1>
+                        <li>(1)台灣乳房醫學會 <span class="score">認定積分 12 分</span></li>
+                        <li>(2)台灣外科醫學會 <span class="score">認定積分 10 分</span></li>
+                        <li>(3)社團法人臨床藥學會 <span class="score">藥師 12.4 分</span></li>
+                        <li>(4)台灣專科護理師學會
+                            <p>(1)專科護理師 <span class="score">12.4分</span></p>
+                            <p>(2)護理師 <span class="score">12.4分</span></p>
+                        </li>
+                        <li>(5)中華民國癌症醫學會
+                            <p>(1)腫瘤內科 <span class="score">3分</span></p>
+                            <p>(2)腫瘤外科 <span class="score">3分</span></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="image-box">
+                    <img src="../assets/img/bubble_tea_no-problem.png" alt="">
+                </div>
+            </div>
+            
+            <el-divider></el-divider>
             <Title title="研討會報名"></Title>
-
             <div class="title-section">
-                <!-- <h1 class="title">Registration Now</h1> -->
             </div>
             <el-form :model="formData" class="form" ref="form" :rules="formRules" labelPosition="top"
-                require-asterisk-position="right" :show-message="true" :scroll-to-error="true">
-                <!-- <el-form-item class="member-title required" :label="formLabel.title" prop="title" labelPosition="left"
-                    labelWidth="auto">
-                    <el-radio-group v-model="formData.title">
-                        <el-radio value="Prof.">Prof.</el-radio>
-                        <el-radio value="Dr.">Dr.</el-radio>
-                        <el-radio value="Mr.">Mr.</el-radio>
-                        <el-radio value="Ms.">Ms.</el-radio>
-                    </el-radio-group>
-                </el-form-item> -->
+                require-asterisk-position="right" :show-message="true" :scroll-to-error="true" >
+
                 <div class="main-form">
                     <div class="left-seciton">
                         <el-form-item v-if="attendeeType === '2'" :label="formLabel.chineseName" :prop="'chineseName'">
                             <el-input v-model="formData.chineseName"></el-input>
                         </el-form-item>
-                        <!-- <div class="member-name">
-                            <el-form-item class="first-name required" :label="formLabel.firstName" prop="firstName">
-                                <el-input v-model="formData.firstName"></el-input>
-                            </el-form-item>
-                            <el-form-item class="last-name required" :label="formLabel.lastName" prop="lastName">
-                                <el-input v-model="formData.lastName"></el-input>
-                            </el-form-item>
-                        </div> -->
-                        <!-- <el-form-item v-if="attendeeType === '1'" :label="formLabel.chineseName" :prop="''">
-                            <el-input v-model="formData.chineseName"></el-input>
-                        </el-form-item> -->
+
                         <el-form-item class="email required" :label="formLabel.email" prop="email">
                             <el-input v-model="formData.email" :placeholder="formLabel.email2"
                                 :prefixIcon="Message"></el-input>
                         </el-form-item>
-                        <!-- <el-form-item class="required" :label="formLabel.password" prop="password">
-                            <el-input v-model="formData.password" :placeholder="formLabel.password" :prefixIcon="Lock"
-                                show-password></el-input>
-                        </el-form-item>
-                        <el-form-item class="required" :label="formLabel.confirmPassword" prop="confirmPassword">
-                            <el-input v-model="formData.confirmPassword" :placeholder="formLabel.confirmPassword"
-                                :prefixIcon="Lock" show-password></el-input>
-                        </el-form-item> -->
+
                         <el-form-item class="required" :label="formLabel.affiliation" prop="affiliation">
                             <el-input v-model="formData.affiliation"></el-input>
                         </el-form-item>
@@ -58,13 +55,7 @@
                         <el-form-item :label="formLabel.idCard" prop="idCard">
                             <el-input v-model="formData.idCard"></el-input>
                         </el-form-item>
-                        <!-- <el-form-item class="required" :label="formLabel.country" prop="country">
-                            <el-select :disabled="attendeeType === '2'" v-model="formData.country"
-                                placeholder="Select a Country or Location" filterable @change="cleanRemitAccount">
-                                <el-option v-for="item in countries" :key="item" :label="item"
-                                    :value="item"></el-option>
-                            </el-select>
-                        </el-form-item> -->
+
 
                         <div class="member-phone required">
                             <el-form-item class="country-code" :label="formLabel.countryCode" prop="countryCode">
@@ -74,18 +65,11 @@
                                     <span>-</span>
                                 </div>
                             </el-form-item>
-                            <el-form-item :class="'domestic-phone-num'"
-                                :label="formLabel.phoneNum" prop="phoneNum">
+                            <el-form-item :class="'domestic-phone-num'" :label="formLabel.phoneNum" prop="phoneNum">
                                 <el-input v-model="formData.phoneNum"></el-input>
                             </el-form-item>
                         </div>
-                        <!-- <el-form-item v-if="formData.country === 'Taiwan'" :label="formLabel.remitAccountLast5"
-                            prop="remitAccountLast5">
-                            <el-input v-model="formData.remitAccountLast5"></el-input>
-                        </el-form-item> -->
-                        <!-- <el-form-item v-if="formData.country === 'Taiwan'" :label="formLabel.receipt">
-                            <el-input v-model="formData.receipt"></el-input>
-                        </el-form-item> -->
+
                         <el-form-item :label="formLabel.food">
                             <el-radio-group v-model="formData.food">
                                 <el-radio value="葷">{{ formLabel.foodRadio1 }}</el-radio>
@@ -95,22 +79,7 @@
                         <el-form-item :label="formLabel.foodTaboo">
                             <el-input v-model="formData.foodTaboo"></el-input>
                         </el-form-item>
-                        <!-- <el-form-item class="category required" :label="formLabel.category" prop="category">
-                            <el-radio-group v-model="formData.category" @change="cleanCategoryExtra(formData)">
-                                <el-radio :value="1">
-                                    {{ formLabel.category1 }}
-                                </el-radio>
-                                <el-form-item v-if="formData.category === 1" prop="categoryExtra">
-                                    <el-select v-if="attendeeType === '1'" v-model="formData.categoryExtra"
-                                        class="category-select">
-                                        <el-option label="IOPBS" value="IOPBS"></el-option>
-                                        <el-option label="JOPBS" value="JOPBS"></el-option>
-                                    </el-select>
-                                </el-form-item>
-                                <el-radio :value="2">{{ formLabel.category2 }}</el-radio>
-                                <el-radio :value="3">{{ formLabel.category3 }}</el-radio>
-                            </el-radio-group>
-                        </el-form-item> -->
+
                     </div>
                 </div>
                 <el-form-item class="captcha" prop="captcha">
@@ -126,6 +95,7 @@
                     <el-button type="primary" @click="submit(form)">Submit</el-button>
                 </el-form-item>
             </el-form>
+           </div>
         </main>
 
     </div>
@@ -203,8 +173,9 @@ const codeMap: Record<string, number> = {
 };
 
 const checkCkDigit = (rule: any, value: string, callback: any) => {
-
-    if (!value) {
+    if (!value) callback(new Error('請輸入身分證字號'))
+    if (value) {
+        console.log('checkCkDigit', value)
 
         if (!/^[A-Z][0-9]{9}$/.test(value)) {
             callback({ valid: false, message: "身份證格式不正確" });
@@ -466,6 +437,7 @@ const submit = async (formEl: FormInstance | undefined) => {
     // console.log(valid)
     formEl.validate(async (valid) => {
         if (valid) {
+            console.log('submit', formData)
             console.log(formEl)
             formData.phone = formData.countryCode + '-' + formData.phoneNum
             let res = await CSRrequest.post('/member', {
@@ -481,7 +453,9 @@ const submit = async (formEl: FormInstance | undefined) => {
 
             if (res.data.isLogin) {
                 localStorage.setItem(res.data.tokenName, 'Bearer ' + res.data.tokenValue);
-                router.push('/member-center')
+                ElMessage.success('註冊成功')
+
+                router.push('/')
             }
 
             formEl.resetFields()
@@ -506,22 +480,15 @@ onMounted(() => {
 .common-section {
     font-family: $common-section-font-family;
 
-    .banner-box {
-        margin-top: 1rem;
-
-        img {
-            width: 100%;
-            box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.5);
-        }
-    }
-
     .title-section {
         margin: 1rem auto;
         text-align: center;
 
         .title {
-            font-size: 2.7rem;
+            font-size: 2.5rem;
             font-weight: 600;
+            color: #424384;
+
         }
     }
 
@@ -531,14 +498,21 @@ onMounted(() => {
         text-align: center;
 
         h1 {
-            font-size: 2rem;
-        }
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #424384;        }
     }
 
     .form {
-        width: 80%;
+        width: 60%;
         margin: 1rem auto;
         font-weight: 600;
+
+        :deep(.el-form-item__label) {
+            font-size: 1.3rem;
+            font-weight: 600;
+            // color: #1C4587;
+        }
 
         .member-title {
             display: flex;
@@ -659,6 +633,7 @@ onMounted(() => {
                         position: absolute;
                         top: 0.5rem;
                         left: 10rem;
+
                         @media screen and (max-width: 768px) {
                             left: 13rem;
                         }
@@ -746,6 +721,98 @@ onMounted(() => {
 
     :deep(.el-input__wrapper) {
         border-radius: 10px;
+    }
+
+
+    .credit-box {
+        display: flex;
+        justify-content: center;
+        margin-inline: auto;
+        width: 80%;
+        gap: 5rem;
+
+        @media screen and (max-width: 1024px) {
+            // flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            
+            gap: 2rem;
+
+        }
+
+        @media screen and (max-width: 375px) {
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        .credit-point-box {
+            justify-content: center;
+            align-items: flex-start;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #424384;
+
+            @media screen and (max-width: 768px) {
+                width: 100%;
+                font-size: 1.2rem;
+            }
+
+
+            ul {
+                list-style-type:none;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                p {
+                    padding-left: 2rem;
+                }
+
+                @media screen and (max-width: 768px) {
+                    margin-inline: auto;
+                }
+            }
+
+            .title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin: 0rem 0 1rem 0;
+                color: #424384;
+
+              
+            }
+
+          
+            .score {
+                color: #D27DA6;
+            }
+        }
+
+        .image-box {
+            width: 30%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            @media screen and (max-width: 768px) {
+                width: 100%;
+                justify-content: center;
+                margin-top: 2rem;
+                display: none;
+            }
+
+            img {
+                width: 100%;
+                max-width: 20rem;
+                height: auto;
+            }
+        }
     }
 }
 </style>
