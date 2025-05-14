@@ -1,6 +1,7 @@
 <template>
     <div class="common-section">
         <!-- <img src="../assets/img/sponsor_list.png" alt=""> -->
+         <Title title="Gallery(2023)"></Title>
 
         <div class="gallery">
             <div v-for="(group, groupIndex) in groupedImages1" :key="groupIndex" class="image-group">
@@ -24,6 +25,7 @@
     </div>
 </template>
 <script lang="ts" setup>
+import Title from '@/components/layout/Title.vue';
 
 
 const cols = ref(6);

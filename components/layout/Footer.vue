@@ -11,8 +11,8 @@ import Title from './Title.vue';
 </script>
 <style lang="scss" scoped>
 .footer-section {
-    // background-color: #F0F0F0;
-    background: url('../../assets/img/ticbcs_footer_background.jpg') no-repeat center center;
+    background-color:#D27DA6;
+    // background: url('../../assets/img/ticbcs_footer.jpg') no-repeat top center;
     background-size: cover;
     padding: 2rem 0;
 

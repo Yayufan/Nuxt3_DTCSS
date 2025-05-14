@@ -27,12 +27,14 @@ const closeMenu = () => {
 }
 
 const menu = reactive([
+    { title: '首頁', path: '/', isActive: false },
+    { title: '關於我們', path: '/about-us', isActive: false },
     { title: '會議資訊', path: '/conference-information', isActive: false },
-    { title: '研討會報名', path: '/seminar-registration',isActive: false },
-    { title: '學分申請',path: '/credit-application', isActive: false },
+    { title: '註冊資訊', path: '/seminar-registration',isActive: false },
+    { title: '交通資訊', path: '/transportation',isActive: false },
+    { title: '旅遊資訊', path: '/travel',isActive: false },
     { title: '贊助廠商', path: '/sponsor-list',isActive: false },
     { title: '吉祥物專區', path: '/mascot',isActive: false },
-    { title: 'Gallery(2023 TICBCS)', path: '/gallery', isActive: false },
 
 ])
 

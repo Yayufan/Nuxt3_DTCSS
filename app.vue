@@ -3,15 +3,16 @@
   <div class="wrapper">
 
     <!-- 共用的Header -->
-    <Header @open-menu="openMenu" :isActive="isActive"></Header>
+    <!-- <Header @open-menu="openMenu" :isActive="isActive"></Header> -->
     <Menu class="menu-bar" @open-menu="openMenu" :isActive="isActive"></Menu>
     <MobileMenu class="mobile-menu" v-if="isActive" @close-menu="closeMenu"></MobileMenu>
     <!-- 先用一個main標籤將之後要顯示的路由組件包起來 -->
-    <main class="content" :class="{'is-open': isActive}">
+    <main class="content" :class="{ 'is-open': isActive }">
       <NuxtPage></NuxtPage>
     </main>
 
     <!-- 共用的Footer -->
+     <Bottom/>
     <Footer ref="footerRef"></Footer>
   </div>
 
@@ -21,6 +22,7 @@
 
 import Header from './components/layout/Header.vue';
 import Menu from '@/components/layout/Menu.vue';
+import Bottom from '@/components/layout/Bottom.vue';
 import Footer from '@/components/layout/Footer.vue';
 import MobileMenu from './components/layout/MobileMenu.vue';
 import { ref } from 'vue';
@@ -28,18 +30,10 @@ import { ref } from 'vue';
 //這邊注意只是獲取組件而已
 const footerRef = ref()
 
-//按鈕抵達Footer組件
-const buttonArrivesFooter = ref(false)
-
-//顯示Button變量
-const showTopButton = ref(false);
 
 //這邊使用在easyState.ts , export 出來的useScrollPosition
 //獲得全局共享變量scrollPosition
 const scrollPosition = useScrollPosition()
-
-//獲得全局共享變量viewportWidth視口寬度
-const viewportWidth = useViewportWidth()
 
 const isActive = ref(false);
 const openMenu = (value: boolean) => {
@@ -60,6 +54,26 @@ function handleScroll() {
   scrollPosition.value = scrollPositionY
   //console.log('滾輪位置',scrollPosition.value)
 }
+
+const handleBannerHeight = () => {
+  const menuHeight = document.querySelector('.menu-container') as HTMLElement
+  const contentMarginTop = document.querySelector('.content') as HTMLElement
+
+  if (menuHeight && contentMarginTop) {
+    const menuHeightValue = menuHeight.offsetHeight
+    contentMarginTop.style.marginTop = `${menuHeightValue}px`
+  }
+}
+
+
+onMounted(() => {
+  // handleBannerHeight()
+  // // 監聽滾動事件
+  // window.addEventListener('scroll', handleScroll)
+  // // 監聽視窗大小變化事件
+  // // window.addEventListener('DOMContentLoaded', handleBannerHeight)
+  // window.addEventListener('resize', handleBannerHeight)
+})
 
 
 </script>
@@ -129,10 +143,9 @@ function handleScroll() {
   .content {
     flex-grow: 1;
     position: relative;
+    margin-top: 6rem;
   }
 
-  .is-open {
-  }
 
 }
 </style>

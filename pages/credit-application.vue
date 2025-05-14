@@ -1,5 +1,6 @@
 <template>
     <div class="common-section">
+        <Title title="學分申請"></Title>
         <h1 class="title">研討會申請之會議學分</h1>
         <p>1.台灣乳房醫學會 <span class="score">認定積分 12 分</span></p>
         <p>2.台灣外科醫學會 <span class="score">認定積分 10 分</span></p>
@@ -16,14 +17,15 @@
     </div>
 
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import Title from '@/components/layout/Title.vue';
+</script>
 <style lang="scss" scoped>
 .common-section {
     margin: $common-section-margin;
     width: $common-section-width;
     font-family: $common-section-font-family;
     justify-content: center;
-    align-items: flex-start;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
