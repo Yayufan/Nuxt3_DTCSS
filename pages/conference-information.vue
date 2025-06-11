@@ -1,13 +1,10 @@
 <template>
     <div class="common-section">
         <Banner />
-        <div class="main-section">
+        <!-- <div class="main-section">
             <div class="meeting-info">
-                <!-- <h1 class="title">研討會資訊</h1> -->
                 <Title title="研討會資訊"></Title>
                 <div class="meeting-info-box">
-                    <!-- <p><span class="title">主辦單位:</span>中國醫藥大學、中國醫藥大學附設醫院、中華民國乳癌教育暨防治學會</p>
-                <p><span class="title">指導單位:</span>台灣乳房醫學會、台灣外科醫學會</p> -->
                     <div>
                         <p><span class="title">會議時間:</span>2025年06月28日(六)，上午08:00 - 下午17:50
                         </p>
@@ -39,8 +36,8 @@
                         frameborder="0"></iframe>
                 </div>
             </div>
-        </div>
-
+        </div> -->
+        <h1 class="temp">議程確認中</h1>
 
     </div>
 </template>
@@ -60,6 +57,10 @@ import Banner from '@/components/layout/Banner.vue';
     flex-direction: column;
     gap: 2.5rem;
     color: #424384;
+
+    .temp {
+        font-size: 2.5rem;
+    }
 
     .main-section {
         width: 60%;
