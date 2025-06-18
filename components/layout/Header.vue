@@ -1,67 +1,28 @@
 <template>
     <header class="header">
-        <!-- <div class="title" v-if="title != ''">
-            <p>{{ title.split('(')[0] }}</p>
-            <p>{{ title.split('y')[1] }}</p>
-        </div> -->
+        「穩定血管通路，守護透析生命線」+第十三屆血液透析瘻管治療與照護研討會
     </header>
 </template>
 <script lang="ts" setup>
 
 
-const router = useRouter();
-
-
-const isActive = ref(false);
-const props = defineProps<{
-    isActive: boolean;
-}>();
-
-watch(() => props.isActive, (value) => {
-    isActive.value = value;
-});
-
-const isScroll = ref(false)
-
-function handleScroll() {
-    // 獲取滾動到的位置
-    let scrollPositionY = window.scrollY
-    if (scrollPositionY > 0) {
-        isScroll.value = true
-    } else {
-        isScroll.value = false
-    }
-}
-
-onMounted(() => {
-    window.addEventListener('scroll', handleScroll)
-})
-
 
 </script>
 <style lang="scss" scoped>
 .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // background: url('../../assets/img/ticbcsBanner_new (1).jpg') no-repeat center center;
-    // background: url('../../assets/img/ticbcsBanner_new.jpg') no-repeat bottom center;
-    background-size: cover;
-    min-height: 38rem;
     width: 100%;
-    z-index: 9;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    padding: 0 20px;
+    background-color: #140F4B;
+    font-size: 1.2rem;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-
-    .title {
-        // background-color: rgba(211, 211, 211, 0.3);
-        width: 100%;
-        min-height: 32.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-size: 4rem;
+    @media screen and (max-width: 768px) {
+        text-align: center;
+        padding: 0;
     }
-
 }
 </style>
