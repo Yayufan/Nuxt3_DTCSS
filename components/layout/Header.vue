@@ -14,7 +14,7 @@
     height: 60px;
     line-height: 60px;
     text-align: start;
-    padding: 0 20px;
+    // padding: 0 20px;
     background-color: #140F4B;
     font-size: 1.2rem;
     color: white;

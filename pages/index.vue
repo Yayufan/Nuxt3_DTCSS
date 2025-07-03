@@ -7,9 +7,15 @@
                     <h1 class="topic">「穩定血管通路，守護透析生命線」</h1>
                     <h1 class="topic">第十三屆血液透析瘻管治療與照護研討會</h1>
                     <p>活動日期 : 09/06 (六) – 09/07 (日)</p>
-                    <p>活動時間 : Day1 08:30-17:00 - Day2 08:30-12:00 ​</p>
-                    <p>活動地點 : 大林慈濟醫院 大愛樓 5F大講堂/2F手術室/2F第一會議室</p>
-                    <p>補充資訊 : 9/6(六) 提供素食午膳</p>
+                    <p>活動時間 : 09/06 (六) 08:30-17:00 ; 09/07 (日) 08:30-12:00 ​</p>
+                    <p>活動地點 : 大林慈濟醫院 大愛樓 5F大講堂 (嘉義縣大林鎮民生路2號)</p>
+                    <!-- <div class="btn-box">
+                        <el-button class="agenda-download-btn" type="primary" size="large">議程表</el-button>
+                        <el-button class="add-calendar-btn" type="primary" size="large">
+                            <el-icon><ElIconCalendar /></el-icon><span>加入行事曆</span>
+                        </el-button>
+
+                    </div> -->
                 </div>
                 <div class="conference-registration-box">
                     <el-form class="registration-form" :model="formData" ref="registrationForm" label-position="top">
@@ -20,50 +26,65 @@
                                 <el-radio value="10">9/7護理人員研討會_慈濟體系專區</el-radio>
                             </el-radio-group>
                         </el-form-item>
+                        <div class="form-section">
+                            <div class="left-section">
 
-                        <el-form-item label="中文姓名" prop="chineseName" :rules="formRulesTW.chineseName">
-                            <el-input v-model="formData.chineseName" placeholder="請輸入中文姓名"></el-input>
-                        </el-form-item>
+                                <el-form-item v-if="formData.category === '8'" prop="country" label="國家" :rules="formRulesTW.country">
+                                    <el-select v-model="formData.country" filterable placeholder="請選擇國家">
+                                        <el-option v-for="item in country" :key="item" :label="item"
+                                            :value="item"></el-option>
+                                    </el-select>
+                                </el-form-item>
 
-                        <el-form-item v-if="formData.category !== '8'" label="身分證字號" prop="idCard"
-                            :rules="formRulesTW.idCard">
-                            <el-input v-model="formData.idCard" placeholder="請輸入身分證字號"></el-input>
-                        </el-form-item>
+                                <el-form-item label="中文姓名" prop="chineseName" :rules="formRulesTW.chineseName">
+                                    <el-input v-model="formData.chineseName" placeholder="請輸入中文姓名"></el-input>
+                                </el-form-item>
 
-                        <el-form-item label="電子信箱" prop="email" :rules="formRulesTW.email">
-                            <el-input v-model="formData.email" placeholder="請輸入電子信箱"></el-input>
-                        </el-form-item>
+                                <el-form-item v-if="formData.category !== '8'" label="身分證字號" prop="idCard"
+                                    :rules="formRulesTW.idCard">
+                                    <el-input v-model="formData.idCard" placeholder="請輸入身分證字號"></el-input>
+                                </el-form-item>
 
-                        <el-form-item label="電子信箱驗證" prop="confirmEmail" :rules="confirmEmailRule">
-                            <el-input v-model="formData.confirmEmail" placeholder="請再次輸入電子信箱"></el-input>
-                        </el-form-item>
+                                <el-form-item label="電子信箱" prop="email" :rules="formRulesTW.email">
+                                    <el-input v-model="formData.email" placeholder="請輸入電子信箱"></el-input>
+                                </el-form-item>
 
-                        <el-form-item label="聯絡電話" prop="phone" :rules="formRulesTW.phone">
-                            <el-input v-model="formData.phone" placeholder="請輸入聯絡電話"></el-input>
-                        </el-form-item>
-
-                        <el-form-item label="所屬科部" prop="affiliation" :rules="formRulesTW.affiliation">
-                            <el-input v-model="formData.affiliation" placeholder="請輸入所屬單位"></el-input>
-                        </el-form-item>
-
-                        <el-form-item label="職稱" prop="jobTitle" :rules="formRulesTW.jobTitle">
-                            <el-input v-model="formData.jobTitle" placeholder="請輸入職稱"></el-input>
-                        </el-form-item>
-
-                        <el-form-item v-if="formData.category === '8'" label="醫院" prop="receipt">
-                            <el-input v-model="formData.receipt" placeholder="請輸入醫院名稱"></el-input>
-                        </el-form-item>
-
-                        <el-form-item v-if="formData.category !== '8'" label="醫院全稱(收據抬頭)" prop="receipt">
-                            <el-input v-model="formData.receipt" placeholder="請輸入醫院全稱"></el-input>
-                        </el-form-item>
-
-                        <el-form-item label="驗證碼" prop="verificationCode" :rules="formRulesTW.verificationCode">
-                            <div class="captcha-container">
-                                <el-input v-model="formData.verificationCode" placeholder="請輸入驗證碼"></el-input>
-                                <img :src="captcha.image" alt="captcha" @click="getCaptcha">
+                                <el-form-item label="電子信箱驗證" prop="confirmEmail" :rules="confirmEmailRule">
+                                    <el-input v-model="formData.confirmEmail" placeholder="請再次輸入電子信箱"></el-input>
+                                </el-form-item>
+                                <el-form-item label="聯絡電話" prop="phone" :rules="formRulesTW.phone">
+                                    <el-input v-model="formData.phone" placeholder="請輸入聯絡電話"></el-input>
+                                </el-form-item>
                             </div>
-                        </el-form-item>
+
+                            <div class="right-section">
+
+                                <el-form-item label="所屬科部" prop="affiliation" :rules="formRulesTW.affiliation">
+                                    <el-input v-model="formData.affiliation" placeholder="請輸入所屬單位"></el-input>
+                                </el-form-item>
+
+                                <el-form-item label="職稱" prop="jobTitle" :rules="formRulesTW.jobTitle">
+                                    <el-input v-model="formData.jobTitle" placeholder="請輸入職稱"></el-input>
+                                </el-form-item>
+
+                                <el-form-item v-if="formData.category === '8'" label="醫院" prop="receipt">
+                                    <el-input v-model="formData.receipt" placeholder="請輸入醫院名稱"></el-input>
+                                </el-form-item>
+
+                                <el-form-item v-if="formData.category !== '8'" label="醫院全稱(收據抬頭)" prop="receipt">
+                                    <el-input v-model="formData.receipt" placeholder="請輸入醫院全稱"></el-input>
+                                </el-form-item>
+
+                                <el-form-item label="驗證碼" prop="verificationCode" :rules="formRulesTW.verificationCode">
+                                    <div class="captcha-container">
+                                        <el-input v-model="formData.verificationCode" placeholder="請輸入驗證碼"></el-input>
+                                        <img :src="captcha.image" alt="captcha" @click="getCaptcha">
+                                    </div>
+                                </el-form-item>
+                            </div>
+                        </div>
+
+
 
                         <p v-if="formData.category === '8'">※ 本活動提供素食午膳</p>
                         <p v-if="formData.category === '9'">※ 本活動不提供退費</p>
@@ -93,6 +114,9 @@
 <script lang="ts" setup>
 import type { FormInstance } from 'element-plus';
 import { formRulesTW } from '@/utils/checkSum';
+import countryJson from '@/assets/data/countries.json';
+
+const country = ref(countryJson);
 
 const getCaptcha = async () => {
     let res = await CSRrequest.get('/member/captcha');
@@ -128,6 +152,7 @@ const registrationForm = ref<FormInstance>();
 const formData = reactive({
     category: '8',
     chineseName: '',
+    country: '',
     idCard: '',
     email: '',
     confirmEmail: '',
@@ -225,6 +250,8 @@ onMounted(() => {
 
     .content {
         display: flex;
+        flex-direction: column;
+        align-items: center;
         gap: 3rem;
         padding: 0 2.5rem;
 
@@ -238,14 +265,10 @@ onMounted(() => {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            width: 60%;
+            width: 100%;
             padding: 20px;
             text-align: center;
 
-            @media screen and (max-width: 768px) {
-                width: 80%;
-                padding: 0;
-            }
 
             .topic {
                 font-size: 1.5rem;
@@ -253,19 +276,52 @@ onMounted(() => {
                 color: #333;
                 margin-bottom: 20px;
             }
+
+            .btn-box {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                margin-top: 20px;
+
+                .el-button {
+                    border-radius: 20px;
+                    border: none;
+                }
+
+                .agenda-download-btn {
+                    background-color:#971B6A;
+                    color: white;
+                }
+
+                .add-calendar-btn {
+                    background-color:#CA7D8F;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+
+
+                @media screen and (max-width: 768px) {
+                    flex-direction: column;
+                    align-items: center;
+
+                    .free {
+                        width: 100%;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
         }
 
         .conference-registration-box {
-            width: 40%;
+            width: 80%;
+            margin: 0 auto;
             padding: 20px;
             background-color: #f9f9f9;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-            @media screen and (max-width: 768px) {
-                width: 80%;
-                margin: 0 auto;
-            }
 
             .free {
                 color: red;
@@ -274,10 +330,48 @@ onMounted(() => {
             .registration-form {
                 width: 90%;
                 margin: 0 auto;
+                // font-size: 1rem;
+
+                :deep(.el-form-item__label) {
+                    font-size: 1rem;
+                    color: #333;
+                }
+
+                :deep(.el-input__inner) {
+                    font-size: 1rem;
+                    color: #333;
+                }
+
+                :deep(.el-radio__label) {
+                    font-size: 1rem;
+                    color: #333;
+                }
+
+                :deep(.el-select__inner) {
+                    font-size: 1rem;
+                    color: #333;
+                }
+
+                .form-section {
+                    display: flex;
+                    gap: 2rem;
+
+                    @media screen and (max-width: 768px) {
+                        flex-direction: column;
+                        gap: 1rem;
+
+                    }
+
+                    .left-section,
+                    .right-section {
+                        flex: 1;
+
+                    }
+                }
             }
 
             .reminder {
-                font-size: 0.9rem;
+                font-size: 1rem;
                 color: #666;
                 margin-top: 20px;
                 line-height: 1.5;
@@ -308,10 +402,10 @@ onMounted(() => {
 
                 img {
                     cursor: pointer;
-                    width: 30%;
+                    // width: 30%;
 
                     @media screen and (max-width: 768px) {
-                        width: 60%;
+                        // width: 60%;
                     }
                 }
             }
