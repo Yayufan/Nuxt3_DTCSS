@@ -36,7 +36,7 @@ export default defineNuxtConfig({
       //引入第三方外部css可能會用到
       link: [
         //設置facicon icon,開發時如果透過Nginx代理會看不到
-        { rel: "icon", href: "/logo.ico" }
+        { rel: "icon", href: "/favicon.ico" }
         // <link rel="stylesheet" href="https://myawesome-lib.css">  如果你像引入這個
         // { rel: 'stylesheet', href: 'https://awesome-lib.css' }  //請這樣寫
         //{rel: 'stylesheet', href: "assets/reset.css" }
