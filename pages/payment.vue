@@ -40,6 +40,7 @@ const getOrders = async () => {
     })
 
     console.log(res.code === 500)
+    // 如果因為錯誤被擋下,則顯示錯誤信息，並返為報名頁面
     if (res.code === 500) {
         ElMessageBox.confirm(
             res.msg,
