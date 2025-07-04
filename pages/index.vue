@@ -36,16 +36,16 @@
                                     </el-select>
                                 </el-form-item>
 
-                                <el-form-item label="中文姓名" prop="chineseName" :rules="formRulesTW.chineseName">
+                                <el-form-item :label="formData.category === '8'? '中文姓名' : '中文姓名(申請學分用)'" prop="chineseName" :rules="formRulesTW.chineseName">
                                     <el-input v-model="formData.chineseName" placeholder="請輸入中文姓名"></el-input>
                                 </el-form-item>
 
-                                <el-form-item v-if="formData.category !== '8'" label="身分證字號" prop="idCard"
+                                <el-form-item v-if="formData.category !== '8'" label="身分證字號(申請學分用)" prop="idCard"
                                     :rules="formRulesTW.idCard">
                                     <el-input v-model="formData.idCard" placeholder="請輸入身分證字號"></el-input>
                                 </el-form-item>
 
-                                <el-form-item label="電子信箱" prop="email" :rules="formRulesTW.email">
+                                <el-form-item label="電子信箱(僅能報名一位)" prop="email" :rules="formRulesTW.email">
                                     <el-input v-model="formData.email" placeholder="請輸入電子信箱"></el-input>
                                 </el-form-item>
 
@@ -64,14 +64,14 @@
                                 </el-form-item>
 
                                 <el-form-item label="職稱" prop="jobTitle" :rules="formRulesTW.jobTitle">
-                                    <el-input v-model="formData.jobTitle" placeholder="請輸入職稱"></el-input>
+                                    <el-input v-model="formData.jobTitle" placeholder="請輸ˇ入職稱"></el-input>
                                 </el-form-item>
 
-                                <el-form-item v-if="formData.category === '8'" label="醫院" prop="receipt">
+                                <el-form-item v-if="formData.category === '8'" label="醫院" prop="receipt" :rules="formRulesTW.receipt">
                                     <el-input v-model="formData.receipt" placeholder="請輸入醫院名稱"></el-input>
                                 </el-form-item>
 
-                                <el-form-item v-if="formData.category !== '8'" label="醫院全稱(收據抬頭)" prop="receipt">
+                                <el-form-item v-if="formData.category !== '8'" label="醫院全稱(收據抬頭)" prop="receipt" :rules="formRulesTW.receipt">
                                     <el-input v-model="formData.receipt" placeholder="請輸入醫院全稱"></el-input>
                                 </el-form-item>
 
@@ -104,6 +104,8 @@
                                 @click="handleSubmit(registrationForm)">確認送出</el-button>
                         </el-form-item>
                     </el-form>
+
+                    <!-- <el-button @click="router.push('/registration-success')">test</el-button> -->
                 </div>
             </div>
 
@@ -175,7 +177,7 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
             formData.verificationKey = captcha.key; // 將驗證碼key添加到表單數據中
             if (formData.category === '9') {
                 ElMessageBox.confirm(
-                    '送出資料後將立即跳轉至付款頁面，如未完成付款資料將於一天後刪除',
+                    '如未完成付款資料將於一天後刪除',
                     '提示',
                     {
                         confirmButtonText: '確定',
@@ -194,7 +196,8 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
                         getCaptcha(); // 重新獲取驗證碼
                         if (res.data) {
                             console.log('重定向到', res.data);
-                            router.push(res.data);
+                            router.push('/registration-success');
+                            // router.push(res.data);
                         }
                     } else {
                         ElMessage({
@@ -216,7 +219,8 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
                     getCaptcha(); // 重新獲取驗證碼
                     if (res.data) {
                         console.log('重定向到', res.data);
-                        router.push(res.data);
+                        // router.push(res.data);
+                        router.push('/registration-success');
                     }
                 } else {
                     ElMessage({

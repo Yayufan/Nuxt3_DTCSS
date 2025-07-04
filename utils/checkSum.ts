@@ -86,6 +86,7 @@ export const formRulesTW = reactive<FormRules>({
   verificationCode: [
     { required: true, message: "請輸入驗證碼", trigger: "blur" },
   ],
+  receipt: [{ required: true, message: "請填寫醫院", trigger: "change" }],
 });
 
 /**-----------------------------------英文校驗------------------------------ */
