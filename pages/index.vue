@@ -213,15 +213,17 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
                 let res = await CSRrequest.post('/member', {
                     body: formData
                 });
+                console.log(res);
                 if (res.code === 200) {
                     console.log('提交結果', res);
                     ElMessage.success('報名成功'); formEl.resetFields(); // 重置表單
                     getCaptcha(); // 重新獲取驗證碼
-                    if (res.data) {
-                        console.log('重定向到', res.data);
+                
+                    // if (res.data) {
+                        // console.log('重定向到', res.data);
                         // router.push(res.data);
                         router.push('/registration-success');
-                    }
+                    // }
                 } else {
                     ElMessage({
                         message: `報名失敗 : ${res.msg}`,
