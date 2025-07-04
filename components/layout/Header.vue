@@ -1,6 +1,6 @@
 <template>
     <header class="header">
-        「穩定血管通路，守護透析生命線」+第十三屆血液透析瘻管治療與照護研討會
+        「血管通路 我來守護」 第十三屆血液透析瘻管治療與照護研討會
     </header>
 </template>
 <script lang="ts" setup>

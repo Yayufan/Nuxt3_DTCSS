@@ -4,7 +4,7 @@
         <div class="main-section">
             <div class="content">
                 <div class="conference-info-box">
-                    <h1 class="topic">「穩定血管通路，守護透析生命線」</h1>
+                    <h1 class="topic">「血管通路 我來守護」</h1>
                     <h1 class="topic">第十三屆血液透析瘻管治療與照護研討會</h1>
                     <p>活動日期 : 09/06 (六) – 09/07 (日)</p>
                     <p>活動時間 : 09/06 (六) 08:30-17:00 ; 09/07 (日) 08:30-12:00 ​</p>
@@ -23,7 +23,7 @@
                             <el-radio-group v-model="formData.category">
                                 <el-radio value="8">9/6 醫師手術直播研討會</el-radio>
                                 <el-radio value="9">9/7 護理人員研討會</el-radio>
-                                <el-radio value="10">9/7護理人員研討會_慈濟體系專區</el-radio>
+                                <el-radio value="10">9/7 護理人員研討會_慈濟體系專區</el-radio>
                             </el-radio-group>
                         </el-form-item>
                         <div class="form-section">
@@ -64,14 +64,14 @@
                                 </el-form-item>
 
                                 <el-form-item label="職稱" prop="jobTitle" :rules="formRulesTW.jobTitle">
-                                    <el-input v-model="formData.jobTitle" placeholder="請輸ˇ入職稱"></el-input>
+                                    <el-input v-model="formData.jobTitle" placeholder="請輸入職稱"></el-input>
                                 </el-form-item>
 
                                 <el-form-item v-if="formData.category === '8'" label="醫院" prop="receipt" :rules="formRulesTW.receipt">
                                     <el-input v-model="formData.receipt" placeholder="請輸入醫院名稱"></el-input>
                                 </el-form-item>
 
-                                <el-form-item v-if="formData.category !== '8'" label="醫院全稱(收據抬頭)" prop="receipt" :rules="formRulesTW.receipt">
+                                <el-form-item v-if="formData.category !== '8'" label="醫院全稱(收據抬頭，如未需要請填 '無') " prop="receipt" :rules="formRulesTW.receipt">
                                     <el-input v-model="formData.receipt" placeholder="請輸入醫院全稱"></el-input>
                                 </el-form-item>
 
@@ -177,7 +177,7 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
             formData.verificationKey = captcha.key; // 將驗證碼key添加到表單數據中
             if (formData.category === '9') {
                 ElMessageBox.confirm(
-                    '如未完成付款資料將於一天後刪除',
+                    '繳費連結請至信箱查看，24小時內未付款完成請重新註冊',
                     '提示',
                     {
                         confirmButtonText: '確定',

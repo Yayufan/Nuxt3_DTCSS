@@ -32,12 +32,32 @@ const formRef = ref<any>()
 const form = ref<any>()
 
 const getOrders = async () => {
- 
+
     let res = await CSRrequest.get(`/orders/payment`, {
         params: {
             id: orderId
         }
     })
+
+    console.log(res.code === 500)
+    if (res.code === 500) {
+        ElMessageBox.confirm(
+            '此付款連結已失效，請重新註冊並於獲得付款連結24小時內完成付款',
+            '提示',
+            {
+                confirmButtonText: '確定',
+                type: 'warning',
+                showCancelButton:false
+            }
+        ).then(async () => {
+            router.push('/');
+        }
+
+        ).catch((e) => {
+            console.log(e);
+        });
+    }
+
     form.value = res.data
 
     await nextTick();
@@ -88,23 +108,25 @@ onMounted(() => {
                 td {
                     border-right: 1px white solid;
                 }
+
                 .odd {
-                   td {
-                    &:not(:last-child) {
-                        position: relative;
-                        &::after{
-                           position: absolute;
-                            top: 0px;
-                            right: -1px;
-                            content: '';
-                            display: block;
-                            width: 1px;
-                            height: 100%;
-                            background-color: #E8979E;
-                            z-index: 10;
-                       }
+                    td {
+                        &:not(:last-child) {
+                            position: relative;
+
+                            &::after {
+                                position: absolute;
+                                top: 0px;
+                                right: -1px;
+                                content: '';
+                                display: block;
+                                width: 1px;
+                                height: 100%;
+                                background-color: #E8979E;
+                                z-index: 10;
+                            }
+                        }
                     }
-                   }
                 }
             }
 
@@ -113,7 +135,7 @@ onMounted(() => {
                 background-color: white;
                 font-size: 1.3rem;
                 border-collapse: separate;
-                border-spacing: 0 0.3rem ;
+                border-spacing: 0 0.3rem;
                 width: 70vw;
 
                 @media screen and (max-width: 1048px) {
@@ -131,9 +153,10 @@ onMounted(() => {
                 }
 
                 .header-row {
-                    position:relative;
+                    position: relative;
+
                     &::after {
-                        position:absolute;
+                        position: absolute;
                         bottom: 5px;
                         right: 0;
                         content: '';
@@ -155,7 +178,7 @@ onMounted(() => {
                     border: none !important;
                 }
 
-               
+
 
                 .even {
                     td {
@@ -172,7 +195,7 @@ onMounted(() => {
                         font-weight: bold;
                     }
 
-                   
+
                 }
 
                 .btn-col {
@@ -181,7 +204,7 @@ onMounted(() => {
                     border-radius: 5px;
                 }
 
-               
+
                 .pay-btn {
                     background-color: #26AE07;
                     color: white;
@@ -194,23 +217,23 @@ onMounted(() => {
                     width: 40%;
                 }
 
-                
+
                 .completed {
                     background-color: #D77102 !important;
                     color: white;
                     text-align: center;
                     border-radius: 5px;
                     cursor: default;
-                    
+
                 }
-                
+
                 .temp-col {
                     background-color: white !important;
                     width: 0.1rem;
                     padding: 0;
                     border: none !important;
                 }
-                
+
                 .not-pay {
                     text-align: center;
                     background-color: #26AE07 !important;

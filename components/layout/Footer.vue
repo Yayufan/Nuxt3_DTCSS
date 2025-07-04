@@ -1,7 +1,7 @@
 <template>
     <footer class="footer-section">
         <div class="footer-box">
-            <p> 「穩定血管通路，守護透析生命線」+第十三屆血液透析瘻管治療與照護研討會
+            <p> 「血管通路 我來守護」 第十三屆血液透析瘻管治療與照護研討會
             </p>
             <p>All Rights Reserved©2025</p>
         </div>
