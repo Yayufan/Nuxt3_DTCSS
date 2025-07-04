@@ -42,7 +42,7 @@ const getOrders = async () => {
     console.log(res.code === 500)
     if (res.code === 500) {
         ElMessageBox.confirm(
-            '此付款連結已失效，請重新註冊並於獲得付款連結24小時內完成付款',
+            res.msg,
             '提示',
             {
                 confirmButtonText: '確定',
