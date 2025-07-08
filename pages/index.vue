@@ -19,6 +19,17 @@
                 </div>
                 <div class="conference-registration-box">
                     <el-form class="registration-form" :model="formData" ref="registrationForm" label-position="top">
+
+                        <div class="things-to-note">
+                            <h2>報名須知：</h2>
+                            <ul>
+                                <li>一個電子信箱僅能進行一次報名，請務必填寫學員本人信箱，課程訊息皆以信件提供。</li>
+                                <li v-if="formData.category === '9'">報名後，可至註冊信箱點擊付款連結，進行付款，請於24小時內完成繳費，超過24小時須重新報名。</li>
+                                <li v-if="formData.category === '8'">本活動提供素食午膳</li>
+                                <li v-if="formData.category === '9'">本活動不提供退費</li>
+                            </ul>
+                        </div>
+
                         <el-form-item label="報名分類" prop="category" :rules="formRulesTW.category">
                             <el-radio-group v-model="formData.category">
                                 <el-radio value="8">9/6 醫師手術直播研討會</el-radio>
@@ -29,14 +40,16 @@
                         <div class="form-section">
                             <div class="left-section">
 
-                                <el-form-item v-if="formData.category === '8'" prop="country" label="國家" :rules="formRulesTW.country">
+                                <el-form-item v-if="formData.category === '8'" prop="country" label="國家"
+                                    :rules="formRulesTW.country">
                                     <el-select v-model="formData.country" filterable placeholder="請選擇國家">
                                         <el-option v-for="item in country" :key="item" :label="item"
                                             :value="item"></el-option>
                                     </el-select>
                                 </el-form-item>
 
-                                <el-form-item :label="formData.category === '8'? '中文姓名' : '中文姓名(申請學分用)'" prop="chineseName" :rules="formRulesTW.chineseName">
+                                <el-form-item :label="formData.category === '8' ? '中文姓名' : '中文姓名(申請學分用)'"
+                                    prop="chineseName" :rules="formRulesTW.chineseName">
                                     <el-input v-model="formData.chineseName" placeholder="請輸入中文姓名"></el-input>
                                 </el-form-item>
 
@@ -67,11 +80,13 @@
                                     <el-input v-model="formData.jobTitle" placeholder="請輸入職稱"></el-input>
                                 </el-form-item>
 
-                                <el-form-item v-if="formData.category === '8'" label="醫院" prop="receipt" :rules="formRulesTW.receipt">
+                                <el-form-item v-if="formData.category === '8'" label="醫院" prop="receipt"
+                                    :rules="formRulesTW.receipt">
                                     <el-input v-model="formData.receipt" placeholder="請輸入醫院名稱"></el-input>
                                 </el-form-item>
 
-                                <el-form-item v-if="formData.category !== '8'" label="醫院全稱(收據抬頭，如未需要請填 '無') " prop="receipt" :rules="formRulesTW.receipt">
+                                <el-form-item v-if="formData.category !== '8'" label="醫院全稱(收據抬頭，如未需要請填 '無') "
+                                    prop="receipt" :rules="formRulesTW.receipt">
                                     <el-input v-model="formData.receipt" placeholder="請輸入醫院全稱"></el-input>
                                 </el-form-item>
 
@@ -86,8 +101,7 @@
 
 
 
-                        <p v-if="formData.category === '8'">※ 本活動提供素食午膳</p>
-                        <p v-if="formData.category === '9'">※ 本活動不提供退費</p>
+
 
                         <div class="reminder">
                             <p>個人資料蒐集、處理及利用告知暨同意書
@@ -177,7 +191,7 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
             formData.verificationKey = captcha.key; // 將驗證碼key添加到表單數據中
             if (formData.category === '9') {
                 ElMessageBox.confirm(
-                    '繳費連結請至信箱查看，24小時內未付款完成請重新註冊',
+                    '送出申請後，將寄送繳費連結至信箱，請於信箱中的付款連結進行付款，24小時內未付款完成請重新註冊',
                     '提示',
                     {
                         confirmButtonText: '確定',
@@ -218,11 +232,11 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
                     console.log('提交結果', res);
                     ElMessage.success('報名成功'); formEl.resetFields(); // 重置表單
                     getCaptcha(); // 重新獲取驗證碼
-                
+
                     // if (res.data) {
-                        // console.log('重定向到', res.data);
-                        // router.push(res.data);
-                        router.push('/registration-success');
+                    // console.log('重定向到', res.data);
+                    // router.push(res.data);
+                    router.push('/registration-success');
                     // }
                 } else {
                     ElMessage({
@@ -295,12 +309,12 @@ onMounted(() => {
                 }
 
                 .agenda-download-btn {
-                    background-color:#971B6A;
+                    background-color: #971B6A;
                     color: white;
                 }
 
                 .add-calendar-btn {
-                    background-color:#CA7D8F;
+                    background-color: #CA7D8F;
                     color: white;
                     display: flex;
                     align-items: center;
@@ -356,6 +370,18 @@ onMounted(() => {
                 :deep(.el-select__inner) {
                     font-size: 1rem;
                     color: #333;
+                }
+
+                .things-to-note {
+                    margin: 5% 0;
+
+                    h2 {
+                        font-size: 1.5rem;
+                    }
+
+                    ul {
+                        font-size: 1rem;
+                    }
                 }
 
                 .form-section {
