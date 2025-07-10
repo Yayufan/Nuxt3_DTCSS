@@ -85,10 +85,26 @@
                                     <el-input v-model="formData.receipt" placeholder="請輸入醫院名稱"></el-input>
                                 </el-form-item>
 
-                                <el-form-item v-if="formData.category !== '8'" label="醫院全稱(收據抬頭，如未需要請填 '無') "
-                                    prop="receipt" :rules="formRulesTW.receipt">
+                                <el-form-item v-if="formData.category !== '8'"
+                                    label="醫院全稱（供每位繳費學員開立收據使用，若未填寫將以學員姓名開立。填寫錯誤恕無法重新開立）" prop="receipt"
+                                    :rules="formRulesTW.receipt">
                                     <el-input v-model="formData.receipt" placeholder="請輸入醫院全稱"></el-input>
                                 </el-form-item>
+
+                                <el-form-item v-if="formData.category !== '8'" label="是否旁聽9/6醫師研討會 ? (旁聽學員不提供護理學分及午餐)" prop="categoryExtra">
+                                    <el-radio-group v-model="formData.categoryExtra">
+                                        <el-radio value="是">是</el-radio>
+                                        <el-radio value="否">否</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+
+                                <el-form-item v-else label="是否參與 9/7 護理人員研討會？" prop="categoryExtra">
+                                    <el-radio-group v-model="formData.categoryExtra">
+                                        <el-radio value="是">是</el-radio>
+                                        <el-radio value="否">否</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+
 
                                 <el-form-item label="驗證碼" prop="verificationCode" :rules="formRulesTW.verificationCode">
                                     <div class="captcha-container">
@@ -176,6 +192,7 @@ const formData = reactive({
     affiliation: '',
     jobTitle: '',
     receipt: '',
+    categoryExtra: '否',
     verificationCode: '',
     verificationKey: ''
 })
@@ -210,7 +227,7 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
                         getCaptcha(); // 重新獲取驗證碼
                         if (res.data) {
                             console.log('重定向到', res.data);
-                            router.push('/registration-success');
+                            router.push('/registration-success?category=9');
                             // router.push(res.data);
                         }
                     } else {
@@ -224,7 +241,7 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
                     console.log('取消報名');
                 });
             } else {
-                let res = await CSRrequest.post('/member', {
+                let res = await CSRrequest.post(`/member?category=${formData.category}`, {
                     body: formData
                 });
                 console.log(res);
