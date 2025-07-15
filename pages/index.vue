@@ -137,10 +137,13 @@
 
                     <!-- <el-button @click="router.push('/registration-success')">test</el-button> -->
                 </div>
+
+                <div style="width: 80%;" >
+                    <img style="width: 100%;"  src="/img/agenda.jpg">
+                </div>
+
             </div>
-
         </div>
-
     </main>
 </template>
 <script lang="ts" setup>
