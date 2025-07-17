@@ -99,7 +99,7 @@
                                     </el-radio-group>
                                 </el-form-item>
 
-                                <el-form-item v-else label="是否參與 9/7 護理人員研討會？" prop="categoryExtra">
+                                <el-form-item v-else label="是否旁聽9/7護理人員研討會？（旁聽學員不提供護理學分，若需學分請改報名9/7護理人員研討會場次）" prop="categoryExtra">
                                     <el-radio-group v-model="formData.categoryExtra">
                                         <el-radio value="是">是</el-radio>
                                         <el-radio value="否">否</el-radio>
