@@ -14,12 +14,12 @@
                         <el-button class="add-calendar-btn" type="primary" size="large">
                             <el-icon><ElIconCalendar /></el-icon><span>加入行事曆</span>
                         </el-button>
-
+                        
                     </div> -->
                 </div>
                 <div class="conference-registration-box">
                     <el-form class="registration-form" :model="formData" ref="registrationForm" label-position="top">
-
+                        
                         <div class="things-to-note">
                             <h2>報名須知：</h2>
                             <ul>
@@ -29,7 +29,8 @@
                                 <li v-if="formData.category === '9'">本活動不提供退費</li>
                             </ul>
                         </div>
-
+                        
+                        <span class="warning-text">{{ formData.category === '9' && nurseCount > 400 ? '護理人員人數已達上限' : '' }}</span>
                         <el-form-item label="報名分類" prop="category" :rules="formRulesTW.category">
                             <el-radio-group v-model="formData.category">
                                 <el-radio value="8">9/6 醫師手術直播研討會</el-radio>
@@ -130,7 +131,7 @@
                         </div>
 
                         <el-form-item>
-                            <el-button class="submit-btn" type="primary"
+                            <el-button :disabled="formData.category ==='9' && nurseCount > 400" class="submit-btn" type="primary"
                                 @click="handleSubmit(registrationForm)">確認送出</el-button>
                         </el-form-item>
                     </el-form>
@@ -276,8 +277,19 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
     });
 };
 
+const nurseCount = ref(0);
+const fetchNurseCount = async () => {
+  let res:any = await CSRrequest.get('/member/nurse-count');
+  if (res.code === 200) {
+    nurseCount.value = Number(res.data);
+  } else {
+    console.error('獲取護理人員數量失敗', res);
+  }
+};
+
 onMounted(() => {
     getCaptcha();
+    fetchNurseCount();
 });
 
 
@@ -466,6 +478,12 @@ onMounted(() => {
                 width: 100%;
                 margin-top: 20px;
                 background-color: #E87B86;
+            }
+
+            .warning-text {
+                color: red;
+                font-size: 0.9rem;
+                margin-top: 10px;
             }
         }
 
