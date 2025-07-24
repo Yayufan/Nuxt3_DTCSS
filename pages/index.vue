@@ -140,7 +140,7 @@
                 </div>
 
                 <div style="width: 80%;" >
-                    <img style="width: 100%;"  src="/img/agenda.jpg">
+                    <img style="width: 100%;"  src="/img/agenda.png">
                 </div>
 
             </div>
