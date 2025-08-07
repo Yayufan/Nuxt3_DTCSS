@@ -21,7 +21,7 @@
 </template>
 <script lang="ts" setup>
 import type { FormInstance, FormItemRule } from 'element-plus'
-import { formRulesTW } from '@/utils/checkSum'
+import { formRulesTW } from '@/utils/validation-rules'
 import { useMemberData } from '~/composables/useMember'
 
 

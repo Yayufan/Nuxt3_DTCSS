@@ -31,7 +31,7 @@
                         </div>
 
                         <span class="warning-text">{{ formData.category === '9' && nurseCount > 400 ? '護理人員人數已達上限' : ''
-                        }}</span>
+                            }}</span>
                         <el-form-item label="報名分類" prop="category" :rules="formRulesTW.category">
                             <el-radio-group v-model="formData.category">
                                 <el-radio value="8">9/6 醫師手術直播研討會</el-radio>
@@ -151,7 +151,7 @@
 </template>
 <script lang="ts" setup>
 import type { FormInstance } from 'element-plus';
-import { formRulesTW } from '~/utils/checkSum';
+import { formRulesTW } from '@/utils/validation-rules';
 import countryJson from '@/assets/data/countries.json';
 
 const country = ref(countryJson);
