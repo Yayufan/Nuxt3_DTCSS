@@ -2,10 +2,9 @@
     <main class="common-section">
         <section class="questionnaire-section">
             <div class="questionnaire-info-box">
-                <h1>親愛的學員您好：</h1>
-                <p v-if="pageData?.member?.chineseName">
-                    感謝 {{ pageData.member.chineseName || ''
-                    }}參加本次研討會，為提供更優質的課程內容與學習體驗，敬請您撥冗填寫本問卷，您的意見將是我們未來改善與規劃的重要依據。
+                <h1 v-if="pageData?.member?.chineseName">親愛的{{ pageData?.member?.chineseName || '' }}您好：</h1>
+                <p>
+                    感謝您參加本次研討會，為提供更優質的課程內容與學習體驗，敬請您撥冗填寫本問卷，您的意見將是我們未來改善與規劃的重要依據。
                 </p>
             </div>
 
