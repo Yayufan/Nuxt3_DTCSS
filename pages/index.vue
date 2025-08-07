@@ -31,7 +31,7 @@
                         </div>
 
                         <span class="warning-text">{{ formData.category === '9' && nurseCount > 400 ? '護理人員人數已達上限' : ''
-                            }}</span>
+                        }}</span>
                         <el-form-item label="報名分類" prop="category" :rules="formRulesTW.category">
                             <el-radio-group v-model="formData.category">
                                 <el-radio value="8">9/6 醫師手術直播研討會</el-radio>
@@ -101,7 +101,8 @@
                                     </el-radio-group>
                                 </el-form-item>
 
-                                <el-form-item v-else label="是否參與 9/7 護理人員研討會？" prop="categoryExtra">
+                                <el-form-item v-else label="是否旁聽9/7護理人員研討會？（旁聽學員不提供護理學分，若需學分請改報名9/7護理人員研討會場次）"
+                                    prop="categoryExtra">
                                     <el-radio-group v-model="formData.categoryExtra">
                                         <el-radio value="是">是</el-radio>
                                         <el-radio value="否">否</el-radio>
@@ -142,7 +143,7 @@
                 </div>
 
                 <div style="width: 80%;">
-                    <img style="width: 100%;" src="/img/agenda.jpg">
+                    <img style="width: 100%;" src="/img/agenda.png">
                 </div>
 
             </div>
