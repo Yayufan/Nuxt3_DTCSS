@@ -5,7 +5,7 @@
                 <img src="/assets/img/check.png" alt="">
             </div>
             <h1>表單填寫成功！</h1>
-            <p>請持與會Qrcode至報到處進行簽退</p>
+            <p>請持報到Qrcode至報到處進行簽退</p>
             <!-- <p v-if="category == '9'">護理師繳費連結請至信箱查看，24小時內未付款完成請重新報名</p>
             <p>如有任何問題，請聯繫 joanne.wang@zhongfu-pr.com.tw</p> -->
             <nuxt-link to="/" class="back-home-link">返回首頁</nuxt-link>
