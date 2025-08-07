@@ -67,6 +67,8 @@ const checkIdCard = (rule: any, value: string, callback: any) => {
   }
 };
 
+
+
 /**-----------------------------------中文校驗------------------------------ */
 export const formRulesTW = reactive<FormRules>({
   chineseName: [{ required: true, message: "請輸入中文名", trigger: "blur" }],

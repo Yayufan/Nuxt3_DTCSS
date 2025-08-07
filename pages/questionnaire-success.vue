@@ -1,0 +1,66 @@
+<template>
+    <main class="main-section">
+        <el-card class="registration-success-card" shadow="hover">
+            <div class="img-box">
+                <img src="/assets/img/check.png" alt="">
+            </div>
+            <h1>表單填寫成功！</h1>
+            <p>請持與會Qrcode進行簽退</p>
+            <!-- <p v-if="category == '9'">護理師繳費連結請至信箱查看，24小時內未付款完成請重新報名</p>
+            <p>如有任何問題，請聯繫 joanne.wang@zhongfu-pr.com.tw</p> -->
+            <nuxt-link to="/" class="back-home-link">返回首頁</nuxt-link>
+        </el-card>
+    </main>
+</template>
+<script lang="ts" setup>
+
+const route = useRoute()
+const category = route.query.category
+
+console.log("category為: ", category)
+
+
+</script>
+<style lang="scss" scoped>
+.main-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .registration-success-card {
+        width: 32rem;
+        padding: 20px;
+        text-align: center;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+        h1 {
+            color: #71B132;
+            font-size: 2rem;
+        }
+
+        .img-box {
+            margin-bottom: 12px;
+
+            img {
+                max-width: 50%;
+                aspect-ratio: 1 / 1;
+                // height: auto;
+            }
+        }
+
+        .back-home-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #409eff;
+            text-decoration: none;
+            font-weight: bold;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+</style>
