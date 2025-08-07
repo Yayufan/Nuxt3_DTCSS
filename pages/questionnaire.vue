@@ -14,7 +14,7 @@
                     <h2>一、基本資料</h2>
                     <el-form-item label="職稱:" prop="jobTitle" class="hide-required-asterisk">
                         <el-radio-group v-model="formData.jobTitle">
-                            <el-radio label="醫師" value="醫師"></el-radio>
+                            <!-- <el-radio label="醫師" value="醫師"></el-radio> -->
                             <el-radio label="護理師" value="護理師"></el-radio>
                             <el-radio label="衛教師" value="衛教師"></el-radio>
                             <el-radio label="學生" value="學生"></el-radio>
