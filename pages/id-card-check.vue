@@ -1,7 +1,8 @@
 <template>
     <main class="main-section">
         <el-card class="registration-success-card" shadow="hover">
-            <p><b>請填入收到與會Qrcode的信箱</b></p>
+            <p>醫師不需填寫此問卷及簽退,可直接離開會場</p>
+            <p><b>護理人員請填入收到的與會Qrcode的信箱進行問卷填寫</b></p>
             <el-form ref="formRef" :model="formData" label-width="120px" class="el-form" label-position="top">
                 <el-form-item label="請輸入電子信箱" prop="email" :rules="formRulesTW.email" :show-message="true">
                     <el-input v-model="formData.email" placeholder="請輸入電子信箱"></el-input>
