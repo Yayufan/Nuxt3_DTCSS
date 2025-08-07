@@ -19,7 +19,7 @@
                 </div>
                 <div class="conference-registration-box">
                     <el-form class="registration-form" :model="formData" ref="registrationForm" label-position="top">
-                        
+
                         <div class="things-to-note">
                             <h2>報名須知：</h2>
                             <ul>
@@ -29,8 +29,9 @@
                                 <li v-if="formData.category === '9'">本活動不提供退費</li>
                             </ul>
                         </div>
-                        
-                        <span class="warning-text">{{ formData.category === '9' && nurseCount > 400 ? '護理人員人數已達上限' : '' }}</span>
+
+                        <span class="warning-text">{{ formData.category === '9' && nurseCount > 400 ? '護理人員人數已達上限' : ''
+                        }}</span>
                         <el-form-item label="報名分類" prop="category" :rules="formRulesTW.category">
                             <el-radio-group v-model="formData.category">
                                 <el-radio value="8">9/6 醫師手術直播研討會</el-radio>
@@ -92,14 +93,16 @@
                                     <el-input v-model="formData.receipt" placeholder="請輸入醫院全稱"></el-input>
                                 </el-form-item>
 
-                                <el-form-item v-if="formData.category !== '8'" label="是否旁聽9/6醫師研討會 ? (旁聽學員不提供護理學分及午餐)" prop="categoryExtra">
+                                <el-form-item v-if="formData.category !== '8'" label="是否旁聽9/6醫師研討會 ? (旁聽學員不提供護理學分及午餐)"
+                                    prop="categoryExtra">
                                     <el-radio-group v-model="formData.categoryExtra">
                                         <el-radio value="是">是</el-radio>
                                         <el-radio value="否">否</el-radio>
                                     </el-radio-group>
                                 </el-form-item>
 
-                                <el-form-item v-else label="是否旁聽9/7護理人員研討會？（旁聽學員不提供護理學分，若需學分請改報名9/7護理人員研討會場次）" prop="categoryExtra">
+                                <el-form-item v-else label="是否旁聽9/7護理人員研討會？（旁聽學員不提供護理學分，若需學分請改報名9/7護理人員研討會場次）"
+                                    prop="categoryExtra">
                                     <el-radio-group v-model="formData.categoryExtra">
                                         <el-radio value="是">是</el-radio>
                                         <el-radio value="否">否</el-radio>
@@ -131,16 +134,16 @@
                         </div>
 
                         <el-form-item>
-                            <el-button :disabled="formData.category ==='9' && nurseCount > 400" class="submit-btn" type="primary"
-                                @click="handleSubmit(registrationForm)">確認送出</el-button>
+                            <el-button :disabled="formData.category === '9' && nurseCount > 400" class="submit-btn"
+                                type="primary" @click="handleSubmit(registrationForm)">確認送出</el-button>
                         </el-form-item>
                     </el-form>
 
                     <!-- <el-button @click="router.push('/registration-success')">test</el-button> -->
                 </div>
 
-                <div style="width: 80%;" >
-                    <img style="width: 100%;"  src="/img/agenda.png">
+                <div style="width: 80%;">
+                    <img style="width: 100%;" src="/img/agenda.png">
                 </div>
 
             </div>
@@ -149,7 +152,7 @@
 </template>
 <script lang="ts" setup>
 import type { FormInstance } from 'element-plus';
-import { formRulesTW } from '@/utils/checkSum';
+import { formRulesTW } from '@/utils/validation-rules';
 import countryJson from '@/assets/data/countries.json';
 
 const country = ref(countryJson);
@@ -279,12 +282,12 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
 
 const nurseCount = ref(0);
 const fetchNurseCount = async () => {
-  let res:any = await CSRrequest.get('/member/nurse-count');
-  if (res.code === 200) {
-    nurseCount.value = Number(res.data);
-  } else {
-    console.error('獲取護理人員數量失敗', res);
-  }
+    let res: any = await CSRrequest.get('/member/nurse-count');
+    if (res.code === 200) {
+        nurseCount.value = Number(res.data);
+    } else {
+        console.error('獲取護理人員數量失敗', res);
+    }
 };
 
 onMounted(() => {
