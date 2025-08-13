@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8', //預設,不設置也行
       viewport: 'width=device-width, initial-scale=1',  //預設,不設置也行
-      title: '第十三屆血液透析瘻管治療與照護研討會',
+      title: '大林慈濟第十三屆血液透析瘻管治療與照護國際研討會',
       meta: [
         { name: 'keyword', content: "DTCSS" },
         { name: 'description', content: "" }

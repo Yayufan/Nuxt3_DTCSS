@@ -5,7 +5,7 @@
             <div class="content">
                 <div class="conference-info-box">
                     <h1 class="topic">「血管通路 我來守護」</h1>
-                    <h1 class="topic">第十三屆血液透析瘻管治療與照護研討會</h1>
+                    <h1 class="topic">大林慈濟第十三屆血液透析瘻管治療與照護國際研討會</h1>
                     <p>活動日期 : 09/06 (六) – 09/07 (日)</p>
                     <p>活動時間 : 09/06 (六) 08:30-17:00 ; 09/07 (日) 08:30-12:00 ​</p>
                     <p>活動地點 : 大林慈濟醫院 大愛樓 5F大講堂 (嘉義縣大林鎮民生路2號)</p>
@@ -20,6 +20,9 @@
                 <div class="conference-registration-box">
                     <el-form class="registration-form" :model="formData" ref="registrationForm" label-position="top">
 
+                        <div class="warning-text" style="text-align: center;font-size: 1.2rem;" >{{ isFormLocked ? '報名時間已截止，感謝您的熱情參與' : ''
+                            }}</div>
+
                         <div class="things-to-note">
                             <h2>報名須知：</h2>
                             <ul>
@@ -31,7 +34,9 @@
                         </div>
 
                         <span class="warning-text">{{ formData.category === '9' && nurseCount > 400 ? '護理人員人數已達上限' : ''
-                        }}</span>
+                            }}</span>
+
+
                         <el-form-item label="報名分類" prop="category" :rules="formRulesTW.category">
                             <el-radio-group v-model="formData.category">
                                 <el-radio value="8">9/6 醫師手術直播研討會</el-radio>
@@ -134,8 +139,9 @@
                         </div>
 
                         <el-form-item>
-                            <el-button :disabled="formData.category === '9' && nurseCount > 400" class="submit-btn"
-                                type="primary" @click="handleSubmit(registrationForm)">確認送出</el-button>
+                            <el-button :disabled="isFormLocked || (formData.category === '9' && nurseCount > 400)"
+                                class="submit-btn" type="primary"
+                                @click="handleSubmit(registrationForm)">確認送出</el-button>
                         </el-form-item>
                     </el-form>
 
@@ -290,9 +296,24 @@ const fetchNurseCount = async () => {
     }
 };
 
+const isFormLocked = ref(false);
+
+//判斷截止時間
+function checkDeadline() {
+    const deadline = new Date('2025-08-17T23:59:59'); // 設定截止時間
+    // const deadline = new Date('2025-08-13T10:27:30'); // 設定截止時間
+    const now = new Date();
+    isFormLocked.value = now > deadline;
+}
+
+
 onMounted(() => {
     getCaptcha();
     fetchNurseCount();
+
+    // 判斷截止時間
+    checkDeadline(); // 頁面載入時檢查一次
+    setInterval(checkDeadline, 1000 * 60); // 每分鐘檢查一次
 });
 
 
