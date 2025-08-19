@@ -300,7 +300,7 @@ const isFormLocked = ref(false);
 
 //判斷截止時間
 function checkDeadline() {
-    const deadline = new Date('2025-08-17T23:59:59'); // 設定截止時間
+    const deadline = new Date('2025-08-19T16:59:59'); // 設定截止時間
     // const deadline = new Date('2025-08-13T10:27:30'); // 設定截止時間
     const now = new Date();
     isFormLocked.value = now > deadline;
