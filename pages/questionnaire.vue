@@ -247,12 +247,12 @@ const router = useRouter();
 const { pageData } = useMemberData();
 
 watch(() => pageData.value, (newValue) => {
-    console.log('會員資料變更:', newValue);
-    console.log('會員ID:', newValue?.attendeesId);
-    if (!newValue.attendeesId) {
-        console.log('未找到會員資料，跳轉到身分證檢查頁面');
-        ElMessage.warning('請先完成身分證檢查');
-        router.push('/id-card-check');
+    if (!newValue || !newValue.attendeesId) {
+        if (process.client) {
+            ElMessage.warning('請先完成身分證檢查');
+            router.push('/id-card-check');
+        }
+        // ElMessage.warning('請先完成身分證檢查');
     }
 }, { immediate: true });
 

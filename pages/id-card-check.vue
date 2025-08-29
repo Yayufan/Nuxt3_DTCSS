@@ -58,19 +58,20 @@ const confirmEmailRule = reactive<FormItemRule[]>([
 
 
 const handleSubmit = (formEl: FormInstance | undefined) => {
-    console.log(formData)
     if (!formEl) return
     formEl.validate(async (valid) => {
         if (valid) {
             let res = await CSRrequest.post('/questionnaire/id_card', {
                 body: formData
             })
-            console.log("res: ", res)
+            console.log(res)
             if (res.code === 200) {
                 router.push({
                     path: '/questionnaire',
                 })
                 pageData.value = res.data
+            } else {
+                ElMessage.error(res.msg)
             }
         } else {
 
@@ -78,7 +79,6 @@ const handleSubmit = (formEl: FormInstance | undefined) => {
     })
 }
 
-console.log("category為: ", category)
 
 
 </script>
