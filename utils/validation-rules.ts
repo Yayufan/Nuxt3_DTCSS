@@ -34,7 +34,6 @@ const codeMap: Record<string, number> = {
 const checkIdCard = (rule: any, value: string, callback: any) => {
   if (!value) callback(new Error("請輸入身分證字號"));
   if (value) {
-    console.log("checkCkDigit", value);
 
     if (!/^[A-Z][0-9]{9}$/.test(value)) {
       callback({ valid: false, message: "身份證格式不正確" });
