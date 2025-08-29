@@ -421,7 +421,7 @@ const handleSubmitQuestionnaire = (formEl: FormInstance | undefined) => {
                 // 跳轉到成功頁面或其他操作
                 router.push('/questionnaire-success');
             } else {
-                ElMessage.error('問卷提交失敗，請稍後再試');
+                ElMessage.error(res.msg);
             }
         } else {
             console.log('表單驗證失敗');
